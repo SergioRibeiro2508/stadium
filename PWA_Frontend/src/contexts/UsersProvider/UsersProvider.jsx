@@ -1,0 +1,16 @@
+import React, { useState, useMemo } from "react";
+import { UsersContext } from "./UsersContext";
+
+export const UsersProvider = ({ children }) => {
+  const [users, setUsers] = useState([]);
+
+  const value = useMemo(
+    () => ({
+      setUsers,
+      countUsers: users.length,
+    }),
+    [users]
+  );
+
+  return <UsersContext.Provider value={value}>{children}</UsersContext.Provider>;
+};
